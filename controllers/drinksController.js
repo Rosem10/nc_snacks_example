@@ -1,10 +1,12 @@
 const { fetchDrinkById } = require('../models/drinksModel');
 
-function getDrinkById(request, response) {
+function getDrinkById(request, response, next) {
   const { drink_id } = request.params;
-  fetchDrinkById(drink_id).then((drink) => {
-    response.status(200).send({ drink });
-  });
+  fetchDrinkById(drink_id)
+    .then((drink) => {
+      response.status(200).send({ drink });
+    })
+    .catch(next);
 }
 
 module.exports = { getDrinkById };

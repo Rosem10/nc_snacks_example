@@ -42,7 +42,7 @@ describe('GET /api/drinks/drink_id', () => {
   });
 });
 
-describe.only('POST: /api/snacks', () => {
+describe('POST: /api/snacks', () => {
   test('201: responds with the snack object that has been added', () => {
     const newSnack = {
       snack_name: 'Party Ring',
@@ -61,3 +61,16 @@ describe.only('POST: /api/snacks', () => {
       });
   });
 });
+
+describe('GET: /api/drinks/:drink', () => {
+  test('404: non-existant id', () => {
+    return request(app)
+      .get('/api/drinks/drink')
+      .expect(404)
+      .then(({ body }) => {
+        console.log(body);
+      });
+  });
+});
+//api/snacks/9999
+//api/snacks/banana
