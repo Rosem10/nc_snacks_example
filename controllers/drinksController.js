@@ -6,7 +6,9 @@ function getDrinkById(request, response, next) {
     .then((drink) => {
       response.status(200).send({ drink });
     })
-    .catch(next);
+    .catch((err) => {
+      next(err);
+    });
 }
 
 module.exports = { getDrinkById };

@@ -40,6 +40,24 @@ describe('GET /api/drinks/drink_id', () => {
         });
       });
   });
+
+  test('400: Bad Request', () => {
+    return request(app)
+      .get('/api/drinks/drink')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('bad request');
+      });
+  });
+
+  test('404: for an non-existent id', () => {
+    return request(app)
+      .get('/api/drinks/1000')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('not found');
+      });
+  });
 });
 
 describe('POST: /api/snacks', () => {
@@ -61,16 +79,3 @@ describe('POST: /api/snacks', () => {
       });
   });
 });
-
-describe('GET: /api/drinks/:drink', () => {
-  test('404: non-existant id', () => {
-    return request(app)
-      .get('/api/drinks/drink')
-      .expect(404)
-      .then(({ body }) => {
-        console.log(body);
-      });
-  });
-});
-//api/snacks/9999
-//api/snacks/banana
