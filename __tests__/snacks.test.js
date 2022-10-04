@@ -25,3 +25,19 @@ describe('GET /api/snacks', () => {
       });
   });
 });
+
+describe('GET /api/drinks/drink_id', () => {
+  test('200: responds with the requested drink data', () => {
+    return request(app)
+      .get('/api/drinks/1')
+      .expect(200)
+      .then(({ body }) => {
+        const { drink } = body;
+        expect(drink).toEqual({
+          drink_id: 1,
+          drink_name: 'Vimto',
+          drink_description: `Manchester's finest`
+        });
+      });
+  });
+});
