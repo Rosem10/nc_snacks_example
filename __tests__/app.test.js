@@ -2,6 +2,11 @@ const app = require('../app.js')
 const request = require("supertest")
 
 describe('GET /api/drinks/:id', () => {
+
+  afterAll(() => {
+    return db.end()
+  })
+
   test('respond with 200 status code', () => {
     return request(app).get('/api/drinks/1').expect(200)
   });
