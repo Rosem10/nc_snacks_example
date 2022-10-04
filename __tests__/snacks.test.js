@@ -61,16 +61,3 @@ describe('POST: /api/snacks', () => {
       });
   });
 });
-
-describe('GET: /api/drinks/:drink', () => {
-  test('404: non-existant id', () => {
-    return request(app)
-      .get('/api/drinks/drink')
-      .expect(404)
-      .then(({ body }) => {
-        console.log(body);
-      });
-  });
-});
-//api/snacks/9999
-//api/snacks/banana

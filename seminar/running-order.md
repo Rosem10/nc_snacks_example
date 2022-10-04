@@ -2,20 +2,18 @@
    GET 404 - valid non-existant,
    GET 400 - INVALID
 1. recap - what is app.use() what does .next() do - passes to next piece of middleware
-2. Internal Server Error
+2. 500
+   msg: internal server error - use lowerCase
+   Safety net -> jest mocks
 3. handle psql errors
-4. custom errors
-5. tests
-   GET 404 - valid non-existant,
-   GET 400 - INVALID
+   400 - /api/drinks/notAnId
+   msg: bad request - use lowerCase
 
-   if (!user) {
-   return Promise.reject({
-   status: 404,
-   msg: 'Superhero not found'
-   });
-   }
-
-6. POST 400 - NOT NULL CONSTRAINTS
-
-_Can't test for 500 err without custom error handlers_
+_const badRequests = ['22P02'];_
+_if (badRequests.includes(err.code))_
+Point out error message - not ours, inbuilt 4. custom errors
+on top of others
+_if (err.status && err.msg)_ in app
+AND
+_RETURN Promise.reject({status: 404, msg: })_
+in model
